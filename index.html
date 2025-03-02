@@ -3,145 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>济南市郭店中学</title>
+    <title>济南市历城区郭店中学</title>
     <style>
         :root {
-            --primary-color: #2a5696;
-            --secondary-color: #ffffffcc;
+            --primary: #2a5696;
+            --accent: #8eb7d4;
+            --glass: rgba(255, 255, 255, 0.85);
+            --text: #333;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: '微软雅黑', 'Segoe UI', system-ui;
         }
 
         body {
-            background: linear-gradient(45deg, #8eb7d4, #a9c6df);
+            background: linear-gradient(160deg, #f0f5ff 30%, #e3edfe 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 2rem;
+            color: var(--text);
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
         }
 
-        /* 毛玻璃效果 */
-        .glass-panel {
-            background: var(--secondary-color);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            margin-bottom: 20px;
+        /* 增强毛玻璃效果 */
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 33, 77, 0.1),
+                        inset 0 0 12px rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
         }
 
-        /* 导航栏 */
-        nav {
-            margin-bottom: 30px;
+        .glass:hover {
+            transform: translateY(-5px);
+        }
+
+        /* 导航栏优化 */
+        nav.glass {
+            padding: 1rem 2rem;
         }
 
         .nav-menu {
             display: flex;
-            gap: 20px;
+            gap: 1.5rem;
             list-style: none;
+            justify-content: center;
         }
 
         .nav-menu a {
-            color: var(--primary-color);
+            color: var(--primary);
             text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 30px;
+            padding: 0.8rem 2rem;
+            border-radius: 2rem;
             transition: all 0.3s;
+            font-weight: 500;
+            background: rgba(42, 86, 150, 0.08);
         }
 
         .nav-menu a:hover {
-            background: rgba(42, 86, 150, 0.1);
+            background: rgba(42, 86, 150, 0.15);
+            box-shadow: 0 4px 12px rgba(42, 86, 150, 0.1);
         }
 
         /* 首页大图 */
         .hero {
-            height: 400px;
-            background: linear-gradient(rgba(42, 86, 150, 0.5), rgba(42, 86, 150, 0.5)),
-                        url('https://picsum.photos/1200/600') center/cover;
-            border-radius: 15px;
+            height: 480px;
+            background: linear-gradient(rgba(42, 86, 150, 0.2), rgba(42, 86, 150, 0.2)),
+                        url('https://example.com/school-bg.jpg') center/cover;
+            border-radius: 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(2px);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
             color: white;
-            margin-bottom: 30px;
+            text-shadow: 0 4px 12px rgba(0, 33, 77, 0.3);
+            z-index: 1;
         }
 
-        /* 新闻板块 */
-        .news-grid {
+        /* 信息卡片 */
+        .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
         }
 
-        .news-item {
-            padding: 15px;
+        .info-card {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 33, 77, 0.08);
+            transition: transform 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* 联系方式样式 */
+        .contact-box {
+            display: flex;
+            gap: 2rem;
+            padding: 2rem;
             background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
+            border-radius: 1rem;
+            margin-top: 1.5rem;
         }
 
-        footer {
+        .contact-item {
+            flex: 1;
             text-align: center;
-            padding: 20px;
-            color: var(--primary-color);
+            padding: 1rem;
+            border-right: 1px solid rgba(0, 33, 77, 0.1);
+        }
+
+        .contact-item:last-child {
+            border-right: none;
         }
 
         @media (max-width: 768px) {
-            .nav-menu {
-                flex-direction: column;
-                text-align: center;
-            }
+            body { padding: 1rem; }
+            .nav-menu { flex-direction: column; }
+            .hero h1 { font-size: 2.5rem; }
+            .contact-box { flex-direction: column; }
+            .contact-item { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.1); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <nav class="glass-panel">
+        <nav class="glass">
             <ul class="nav-menu">
-                <li><a href="#home">首页</a></li>
+                <li><a href="#home">学校首页</a></li>
                 <li><a href="#about">学校概况</a></li>
-                <li><a href="#news">新闻动态</a></li>
-                <li><a href="#academics">教学科研</a></li>
+                <li><a href="#admission">招生信息</a></li>
+                <li><a href="#arts">艺术教育</a></li>
                 <li><a href="#contact">联系我们</a></li>
             </ul>
         </nav>
 
-        <div class="hero glass-panel">
-            <h1>济南市郭店中学</h1>
+        <div class="hero glass">
+            <h1>济南市历城区郭店中学</h1>
         </div>
 
-        <div class="glass-panel">
-            <h2>最新动态</h2>
-            <div class="news-grid">
-                <div class="news-item">
-                    <h3>校园开放日通知</h3>
-                    <p>2024年5月20日将举办校园开放日活动...</p>
+        <div class="glass">
+            <h2>🏫 学校概况</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>基本数据</h3>
+                    <p>📅 建校时间：1958年<br>
+                       🏛 占地面积：39,850㎡<br>
+                       👨🏫 教职工：131人<br>
+                       📚 藏书量：76,052册</p>
                 </div>
-                <div class="news-item">
-                    <h3>学科竞赛捷报</h3>
-                    <p>我校学生在数学奥林匹克竞赛中荣获一等奖...</p>
+                <div class="info-card">
+                    <h3>教学规模</h3>
+                    <p>🎒 在校生：1,678人<br>
+                       📝 教学班：36个<br>
+                       💻 多媒体教室：54间<br>
+                       🎨 艺术教师：4人</p>
                 </div>
             </div>
         </div>
 
-        <div class="glass-panel">
-            <h2>学校简介</h2>
-            <p>济南市郭店中学创建于1958年，是一所历史悠久的全日制公办中学...</p>
+        <div class="glass">
+            <h2>🎓 招生信息（2024）</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>招生政策</h3>
+                    <p>📋 计划班级：12个班<br>
+                       👥 每班人数：50人<br>
+                       🏫 对口小学：东城实验小学、韩仓小学<br>
+                       📍 覆盖村居：18个</p>
+                </div>
+                <div class="info-card">
+                    <h3>教育特色</h3>
+                    <p>🎶 艺术课程：合唱/舞蹈/书法<br>
+                       🏆 获奖情况：班级艺术节一等奖<br>
+                       📊 测评数据：合格率100%<br>
+                       🎭 特色课程：扎染/快板书</p>
+                </div>
+            </div>
         </div>
 
-        <footer class="glass-panel">
-            <p>地址：山东省济南市历城区郭店街道 电话：0531-8888XXXX</p>
-            <p>© 2024 济南市郭店中学 版权所有</p>
-        </footer>
+        <div class="glass">
+            <h2>📞 联系方式</h2>
+            <div class="contact-box">
+                <div class="contact-item">
+                    <h3>招生咨询</h3>
+                    <p class="highlight">段老师</p>
+                    <p>📱 182-6416-9712</p>
+                </div>
+                <div class="contact-item">
+                    <h3>监督电话</h3>
+                    <p>🏢 历城区教体局<br>
+                       ☎️ 0531-88161285</p>
+                </div>
+                <div class="contact-item">
+                    <h3>地理位置</h3>
+                    <p>📍 山东省济南市<br>
+                       历城区郭店街道</p>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
