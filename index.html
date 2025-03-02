@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>济南市郭店中学</title>
+    <style>
+        :root {
+            --primary-color: #2a5696;
+            --secondary-color: #ffffffcc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #8eb7d4, #a9c6df);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 毛玻璃效果 */
+        .glass-panel {
+            background: var(--secondary-color);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+        }
+
+        /* 导航栏 */
+        nav {
+            margin-bottom: 30px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(42, 86, 150, 0.1);
+        }
+
+        /* 首页大图 */
+        .hero {
+            height: 400px;
+            background: linear-gradient(rgba(42, 86, 150, 0.5), rgba(42, 86, 150, 0.5)),
+                        url('https://picsum.photos/1200/600') center/cover;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        /* 新闻板块 */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .news-item {
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="glass-panel">
+            <ul class="nav-menu">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#about">学校概况</a></li>
+                <li><a href="#news">新闻动态</a></li>
+                <li><a href="#academics">教学科研</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero glass-panel">
+            <h1>济南市郭店中学</h1>
+        </div>
+
+        <div class="glass-panel">
+            <h2>最新动态</h2>
+            <div class="news-grid">
+                <div class="news-item">
+                    <h3>校园开放日通知</h3>
+                    <p>2024年5月20日将举办校园开放日活动...</p>
+                </div>
+                <div class="news-item">
+                    <h3>学科竞赛捷报</h3>
+                    <p>我校学生在数学奥林匹克竞赛中荣获一等奖...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-panel">
+            <h2>学校简介</h2>
+            <p>济南市郭店中学创建于1958年，是一所历史悠久的全日制公办中学...</p>
+        </div>
+
+        <footer class="glass-panel">
+            <p>地址：山东省济南市历城区郭店街道 电话：0531-8888XXXX</p>
+            <p>© 2024 济南市郭店中学 版权所有</p>
+        </footer>
+    </div>
+</body>
+</html>
