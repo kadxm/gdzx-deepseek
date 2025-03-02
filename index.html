@@ -3,55 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>济南市历城区郭店中学</title>
+    <title>济南市历城区郭店中学 | 卓越教育的现代化平台</title>
     <style>
         :root {
-            --primary: #2a5696;
-            --accent: #8eb7d4;
-            --glass: rgba(255, 255, 255, 0.85);
-            --text: #333;
+            --primary: #2A5696;
+            --accent: #6C93C5;
+            --gradient: linear-gradient(135deg, #2A5696 0%, #4682B4 100%);
+            --glass: rgba(255, 255, 255, 0.92);
+            --shadow: 0 12px 40px rgba(0, 33, 77, 0.15);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: '微软雅黑', 'Segoe UI', system-ui;
+            font-family: 'PingFang SC', 'Microsoft YaHei', system-ui;
         }
 
         body {
-            background: linear-gradient(160deg, #f0f5ff 30%, #e3edfe 100%);
+            background: var(--gradient);
             min-height: 100vh;
-            padding: 2rem;
-            color: var(--text);
+            color: #2A2A2A;
+            line-height: 1.8;
+        }
+
+        /* 动态背景层 */
+        .bg-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(108, 147, 197, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(42, 86, 150, 0.1) 0%, transparent 40%);
+            z-index: -1;
         }
 
         .container {
-            max-width: 1280px;
+            max-width: 1440px;
             margin: 0 auto;
-        }
-
-        /* 增强毛玻璃效果 */
-        .glass {
-            background: var(--glass);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-radius: 1.5rem;
             padding: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 33, 77, 0.1),
-                        inset 0 0 12px rgba(255, 255, 255, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            margin-bottom: 2rem;
-            transition: transform 0.3s ease;
         }
 
-        .glass:hover {
-            transform: translateY(-5px);
+        /* 高级毛玻璃面板 */
+        .luxury-glass {
+            background: var(--glass);
+            backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+            border-radius: 2rem;
+            padding: 3rem;
+            box-shadow: var(--shadow),
+                        inset 0 0 24px rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            margin-bottom: 3rem;
+            transform: translateY(0);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        /* 导航栏优化 */
-        nav.glass {
-            padding: 1rem 2rem;
+        .luxury-glass:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 60px rgba(0, 33, 77, 0.25);
+        }
+
+        /* 沉浸式导航栏 */
+        .floating-nav {
+            position: sticky;
+            top: 2rem;
+            margin-bottom: 4rem;
+            z-index: 100;
         }
 
         .nav-menu {
@@ -61,181 +81,215 @@
             justify-content: center;
         }
 
-        .nav-menu a {
+        .nav-link {
             color: var(--primary);
             text-decoration: none;
-            padding: 0.8rem 2rem;
-            border-radius: 2rem;
-            transition: all 0.3s;
-            font-weight: 500;
-            background: rgba(42, 86, 150, 0.08);
-        }
-
-        .nav-menu a:hover {
-            background: rgba(42, 86, 150, 0.15);
-            box-shadow: 0 4px 12px rgba(42, 86, 150, 0.1);
-        }
-
-        /* 首页大图 */
-        .hero {
-            height: 480px;
-            background: linear-gradient(rgba(42, 86, 150, 0.2), rgba(42, 86, 150, 0.2)),
-                        url('https://example.com/school-bg.jpg') center/cover;
-            border-radius: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 2rem;
+            padding: 1.2rem 2.4rem;
+            border-radius: 3rem;
+            transition: all 0.4s;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 16px rgba(42, 86, 150, 0.1);
             position: relative;
             overflow: hidden;
         }
 
-        .hero::after {
+        .nav-link::before {
             content: '';
             position: absolute;
-            inset: 0;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(2px);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
+        .nav-link:hover {
             color: white;
-            text-shadow: 0 4px 12px rgba(0, 33, 77, 0.3);
-            z-index: 1;
+            transform: scale(1.05);
         }
 
-        /* 信息卡片 */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 1.5rem;
+        .nav-link:hover::before {
+            opacity: 1;
         }
 
-        .info-card {
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 1rem;
-            box-shadow: 0 4px 12px rgba(0, 33, 77, 0.08);
-            transition: transform 0.3s;
-        }
-
-        .info-card:hover {
-            transform: translateY(-3px);
-        }
-
-        .highlight {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        /* 联系方式样式 */
-        .contact-box {
+        /* 全屏视差大图 */
+        .hero-section {
+            height: 100vh;
             display: flex;
-            gap: 2rem;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 1rem;
-            margin-top: 1.5rem;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 4rem;
         }
 
-        .contact-item {
-            flex: 1;
+        .hero-content {
             text-align: center;
-            padding: 1rem;
-            border-right: 1px solid rgba(0, 33, 77, 0.1);
+            z-index: 10;
         }
 
-        .contact-item:last-child {
-            border-right: none;
+        .hero-title {
+            font-size: 4.5rem;
+            color: white;
+            text-shadow: 0 8px 24px rgba(0, 33, 77, 0.4);
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s 0.3s forwards;
+        }
+
+        /* 动态数据展示 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 时间线设计 */
+        .timeline {
+            position: relative;
+            padding: 4rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: rgba(42, 86, 150, 0.1);
+        }
+
+        .timeline-item {
+            width: calc(50% - 4rem);
+            padding: 2rem;
+            background: white;
+            border-radius: 1rem;
+            margin: 2rem 0;
+            position: relative;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.6s;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: auto;
+            transform: translateX(30px);
+        }
+
+        /* 交互动画 */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-title { font-size: 3rem; }
         }
 
         @media (max-width: 768px) {
-            body { padding: 1rem; }
             .nav-menu { flex-direction: column; }
-            .hero h1 { font-size: 2.5rem; }
-            .contact-box { flex-direction: column; }
-            .contact-item { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.1); }
+            .stats-grid { grid-template-columns: 1fr; }
+            .timeline::before { left: 2rem; }
+            .timeline-item { width: calc(100% - 6rem); }
         }
     </style>
 </head>
 <body>
+    <div class="bg-layer"></div>
+    
     <div class="container">
-        <nav class="glass">
+        <!-- 悬浮导航 -->
+        <nav class="floating-nav luxury-glass">
             <ul class="nav-menu">
-                <li><a href="#home">学校首页</a></li>
-                <li><a href="#about">学校概况</a></li>
-                <li><a href="#admission">招生信息</a></li>
-                <li><a href="#arts">艺术教育</a></li>
-                <li><a href="#contact">联系我们</a></li>
+                <li><a href="#home" class="nav-link">学校首页</a></li>
+                <li><a href="#history" class="nav-link">历史沿革</a></li>
+                <li><a href="#excellence" class="nav-link">卓越成就</a></li>
+                <li><a href="#admission" class="nav-link">招生通道</a></li>
+                <li><a href="#contact" class="nav-link">联系名校</a></li>
             </ul>
         </nav>
 
-        <div class="hero glass">
-            <h1>济南市历城区郭店中学</h1>
-        </div>
-
-        <div class="glass">
-            <h2>🏫 学校概况</h2>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3>基本数据</h3>
-                    <p>📅 建校时间：1958年<br>
-                       🏛 占地面积：39,850㎡<br>
-                       👨🏫 教职工：131人<br>
-                       📚 藏书量：76,052册</p>
-                </div>
-                <div class="info-card">
-                    <h3>教学规模</h3>
-                    <p>🎒 在校生：1,678人<br>
-                       📝 教学班：36个<br>
-                       💻 多媒体教室：54间<br>
-                       🎨 艺术教师：4人</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="glass">
-            <h2>🎓 招生信息（2024）</h2>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3>招生政策</h3>
-                    <p>📋 计划班级：12个班<br>
-                       👥 每班人数：50人<br>
-                       🏫 对口小学：东城实验小学、韩仓小学<br>
-                       📍 覆盖村居：18个</p>
-                </div>
-                <div class="info-card">
-                    <h3>教育特色</h3>
-                    <p>🎶 艺术课程：合唱/舞蹈/书法<br>
-                       🏆 获奖情况：班级艺术节一等奖<br>
-                       📊 测评数据：合格率100%<br>
-                       🎭 特色课程：扎染/快板书</p>
+        <!-- 全屏英雄区 -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">博学笃行<br>明德至善</h1>
+                <div class="stats-grid">
+                    <div class="stat-card luxury-glass">
+                        <div class="stat-number">66+</div>
+                        <p>办学历史（年）</p>
+                    </div>
+                    <div class="stat-card luxury-glass">
+                        <div class="stat-number">36</div>
+                        <p>教学班级</p>
+                    </div>
+                    <div class="stat-card luxury-glass">
+                        <div class="stat-number">1,678</div>
+                        <p>在校学子</p>
+                    </div>
+                    <div class="stat-card luxury-glass">
+                        <div class="stat-number">130+</div>
+                        <p>精英教师</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="glass">
-            <h2>📞 联系方式</h2>
-            <div class="contact-box">
-                <div class="contact-item">
-                    <h3>招生咨询</h3>
-                    <p class="highlight">段老师</p>
-                    <p>📱 182-6416-9712</p>
+        <!-- 时间线模块 -->
+        <section class="luxury-glass">
+            <h2>🏛️ 历史印记</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>1958年</h3>
+                    <p>济南市郭店中学正式建校</p>
                 </div>
-                <div class="contact-item">
-                    <h3>监督电话</h3>
-                    <p>🏢 历城区教体局<br>
-                       ☎️ 0531-88161285</p>
+                <div class="timeline-item">
+                    <h3>2012年</h3>
+                    <p>获评山东省规范化学校</p>
                 </div>
-                <div class="contact-item">
-                    <h3>地理位置</h3>
-                    <p>📍 山东省济南市<br>
-                       历城区郭店街道</p>
+                <div class="timeline-item">
+                    <h3>2023年</h3>
+                    <p>新校区扩建工程全面竣工</p>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
+
+    <script>
+        // 滚动动画触发
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                const rect = item.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    item.style.opacity = 1;
+                    item.style.transform = 'translateX(0)';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
